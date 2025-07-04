@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="index,follow" />
+
+  <title>Rica Games - Jogos de Corrida Destrutiva</title>
+  <meta name="description" content="Assista vídeos explosivos de jogos de corrida destrutiva estilo Twisted Metal. Ação e destruição total na pista!" />
+  <meta name="keywords" content="Rica Games, jogos de corrida, destruição, Twisted Metal, jogos destrutivos, vídeos de jogos, ação, entretenimento" />
+
+  <style>
+    body {
+      margin: 0;
+      background-color: #121212;
+      color: #f0a500;
+      font-family: 'Orbitron', sans-serif;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      position: relative;
+      background: linear-gradient(135deg, #0f0f0f, #2a2a2a);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #f0a500;
+      text-shadow: 2px 2px 8px #000;
+      font-size: 3em;
+    }
+
+    #video-container {
+      width: 100%;
+      max-width: 800px;
+      aspect-ratio: 16 / 9;
+      margin-bottom: 10px;
+      border: 4px solid #f0a500;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 0 30px #f0a500;
+      background-color: #000;
+    }
+
+    iframe, video {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    #video-title {
+      max-width: 800px;
+      text-align: center;
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 25px;
+      color: #ffdb70;
+      text-shadow: 1px 1px 3px #000;
+      min-height: 2.5em;
+    }
+
+    button {
+      background-color: #f0a500;
+      border: none;
+      padding: 14px 30px;
+      color: #121212;
+      font-weight: 700;
+      cursor: pointer;
+      border-radius: 12px;
+      margin-bottom: 40px;
+      font-size: 18px;
+      transition: background-color 0.3s ease;
+      box-shadow: 0 0 15px #f0a500;
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    button:hover {
+      background-color: #c78c00;
+      box-shadow: 0 0 25px #c78c00;
+    }
+
+    #unique-string {
+      max-width: 90%;
+      background-color: #222;
+      border-radius: 12px;
+      padding: 20px;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 14px;
+      white-space: pre-wrap;
+      word-break: break-word;
+      color: #f0a500;
+      user-select: text;
+      margin-top: auto;
+      box-shadow: inset 0 0 10px #d8a500;
+    }
+
+    #propaganda-piscante {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: #f0a500;
+      color: #121212;
+      font-weight: 700;
+      padding: 12px 18px;
+      border-radius: 14px;
+      font-size: 16px;
+      cursor: pointer;
+      animation: piscar 1s infinite alternate;
+      box-shadow: 0 0 20px #f0a500;
+      z-index: 1000;
+      user-select: none;
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    @keyframes piscar {
+      0% {opacity: 1;}
+      100% {opacity: 0.3;}
+    }
+
+    @media (max-width: 600px) {
+      #video-container {
+        max-width: 100%;
+        aspect-ratio: auto;
+        height: 215px;
+      }
+
+      #video-title {
+        font-size: 18px;
+      }
+
+      #propaganda-piscante {
+        font-size: 14px;
+        padding: 8px 12px;
+        top: 10px;
+        right: 10px;
+      }
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <h1>Jogos de Corrida Destrutiva - Rica Games</h1>
+
+  <div id="video-container"></div>
+
+  <div id="video-title">Carregando vídeo...</div>
+
+  <button onclick="trocarVideo()">Trocar Vídeo</button>
+
+  <div id="unique-string">Carregando conteúdo exclusivo...</div>
+
+  <div id="propaganda-piscante">OFERTA IMPERDÍVEL!</div>
+
+  <script>
+    const videos = [
+      {
+        tipo: "mp4",
+        src: "https://filmeseserie.com.br/jogo/detonado01.mp4",
+        titulo: "Twisted Metal PSOne Detonado",
+        poster: "poster1.jpg"
+      },
+      {
+        tipo: "youtube",
+        src: "https://www.youtube.com/embed/pluwlAPGdlQ",
+        titulo: "Twisted Metal: Small Brawl | PS1 | 4K60ˢ UHD🔴 | Passo a passo da jogabilidade Jogo Longplay completo"
+      }
+    ];
+
+    const propagandas = [
+      "https://randomico02.vercel.app/",
+      "https://randomico02.netlify.app/",
+      "https://carro.wuaze.com/conferir/",
+      "https://arquivos.wuaze.com/conferir/",
+      "https://hostinger.com.br/?REFERRALCODE=1VICTOR444",
+      "https://geocredibnkvitoria.com/",
+      "https://jogosantigos472302513.wordpress.com/",
+      "https://brasilbrasileiross.blogspot.com/",
+      "https://ocomerciobrasileironoticia.blogspot.com/2025/05/erp-profissional-para-empresas.html"
+    ];
+
+    function getRandomVideo() {
+      return videos[Math.floor(Math.random() * videos.length)];
+    }
+
+    function getRandomAdURL() {
+      return propagandas[Math.floor(Math.random() * propagandas.length)];
+    }
+
+    function trocarVideo() {
+      const videoData = getRandomVideo();
+      const container = document.getElementById('video-container');
+      const tituloEl = document.getElementById('video-title');
+
+      let videoHTML = '';
+
+      if (videoData.tipo === 'youtube') {
+        videoHTML = `<iframe 
+                      src="${videoData.src}" 
+                      frameborder="0" 
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                      allowfullscreen
+                      title="${videoData.titulo}">
+                    </iframe>`;
+      } else {
+        videoHTML = `<video controls preload="metadata" poster="${videoData.poster || ''}">
+                      <source src="${videoData.src}" type="video/mp4" />
+                      Seu navegador não suporta o elemento de vídeo.
+                    </video>`;
+      }
+
+      container.innerHTML = videoHTML;
+      tituloEl.textContent = videoData.titulo;
+    }
+
+    function gerarStringUnica(tamanho = 300) {
+      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+-=[]{}|;:,.<>?';
+      let resultado = '';
+      for(let i = 0; i < tamanho; i++) {
+        resultado += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+      return resultado;
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      trocarVideo(); // carrega o primeiro vídeo aleatório
+      document.getElementById('unique-string').textContent = gerarStringUnica();
+
+      document.getElementById('propaganda-piscante').addEventListener('click', () => {
+        window.open(getRandomAdURL(), '_blank');
+      });
+    });
+  </script>
+
+</body>
+</html>
